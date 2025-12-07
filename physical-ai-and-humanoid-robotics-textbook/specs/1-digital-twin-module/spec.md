@@ -87,13 +87,14 @@ As a student, I want to develop a Unity scene with a realistic humanoid robot re
 
 ### Measurable Outcomes
 
-- **SC-001**: The user can successfully create and launch a Gazebo world containing a humanoid robot model and specified obstacles, demonstrating realistic physics (gravity, friction, inertia) within 45 minutes.
-- **SC-002**: The user can successfully integrate and visualize data streams from at least three different sensor plugins (e.g., ray, camera, IMU) in Gazebo, including the application of basic sensor noise models, verifiable within 60 minutes.
-- **SC-003**: The user can create a Unity scene that renders a humanoid robot with high fidelity and establishes bidirectional communication with a ROS 2 system via the ROS-Unity bridge, demonstrating basic data exchange within 90 minutes.
+- **SC-001**: The user can successfully create and launch a Gazebo world containing a humanoid robot model and specified obstacles, demonstrating basic realism (joint limits, friction) within 45 minutes.
+- **SC-002**: The user can successfully integrate and visualize data streams from at least two different sensor plugins (e.g., ray, camera, IMU) in Gazebo, including the application of basic sensor noise models, verifiable within 60 minutes.
+- **SC-003**: The user can create a Unity scene that renders a humanoid robot with high fidelity (60+ FPS, PBR, basic HDR) and establishes bidirectional communication with a ROS 2 system via the ROS-Unity bridge, demonstrating basic data exchange within 90 minutes.
 - **SC-004**: The user can successfully complete practical exercises that involve configuring Gazebo physics, creating SDF models, integrating sensor plugins, and demonstrating collision detection within a 2-hour assessment period.
 
 ## Assumptions
 
+- Students have access to individual hardware kits for hands-on experience.
 - Students have access to and are able to install Gazebo 11/Fortress and Unity 2022 LTS.
 - Students have a basic understanding of 3D modeling concepts and coordinate systems, which is helpful but not strictly required as the module will provide necessary context.
 - The ROS-Unity bridge is fully compatible and stable with the specific versions of ROS 2 and Unity targeted by the curriculum.

@@ -1,0 +1,39 @@
+# Gitignore for Docusaurus / Node.js project
+
+# Node.js
+node_modules/
+.pnp/
+.pnp.js
+
+# Docusaurus
+.docusaurus/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime files
+.env
+.env*.local
+.cache/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# macOS
+.Trashes
+.Spotlight-V100
+.TemporaryItems
+.fseventsd
+
+# Windows
+desktop.ini
+$RECYCLE.BIN/

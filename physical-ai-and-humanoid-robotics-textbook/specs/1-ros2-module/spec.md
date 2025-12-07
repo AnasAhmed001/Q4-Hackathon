@@ -87,13 +87,14 @@ As a student, I want to understand the structure of URDF and create a basic URDF
 
 ### Measurable Outcomes
 
-- **SC-001**: The user can successfully create and source a functional ROS 2 workspace, compile a basic C++ or Python package within it, and verify its sourcing within 15 minutes.
+- **SC-001**: The user can successfully create and source a functional ROS 2 workspace, compile a basic C++ or Python package within it, and verify its sourcing within 30 minutes.
 - **SC-002**: The provided publisher-subscriber demo correctly exchanges messages on a defined topic, verifiable by observing message output in less than 5 minutes of execution.
 - **SC-003**: A URDF model of a simplified humanoid robot is created and can be loaded into `rviz` without errors, displaying all defined joints and links correctly within 30 minutes of setup.
 - **SC-004**: All core ROS 2 concepts (nodes, topics, services, actions, parameters) are clearly defined and accompanied by relevant code examples; the content clearly explains the purpose and structure of URDF files for humanoid robots.
 
 ## Assumptions
 
+- Students have access to individual hardware kits for hands-on experience.
 - Students have Python proficiency, Linux command line familiarity, and basic robotics concepts (as per prerequisites).
 - A functional ROS 2 environment (e.g., Foxy, Humble) is accessible for students to test code examples.
 - Students have access to tools for URDF visualization (e.g., `rviz`).

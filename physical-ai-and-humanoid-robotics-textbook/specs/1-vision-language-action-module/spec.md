@@ -86,13 +86,16 @@ As a user, I want the robot to identify objects using vision transformers and in
 
 ### Measurable Outcomes
 
-- **SC-001**: The user can successfully implement a voice command interface that accurately transcribes spoken commands (e.g., >90% word accuracy for clear speech) and translates them into executable ROS actions for at least 5 distinct robot commands, verifiable within a 30-minute demonstration.
+- **SC-001**: The user can successfully implement a voice command interface that accurately transcribes spoken commands and translates them into executable ROS actions for at least 5 distinct robot commands, verifiable within a 30-minute demonstration through task success-based evaluation (>90% effective task completion).
 - **SC-002**: The user can develop an LLM-based task planner that effectively decomposes high-level natural language instructions (e.g., 3-5 step tasks) into a correct sequence of ROS actions, achieving a >80% success rate in generating valid plans for 10 predefined scenarios within a 60-minute evaluation.
 - **SC-003**: The user can create an end-to-end autonomous humanoid robot demonstration that integrates speech recognition, LLM-based planning, vision-based object recognition, and multimodal fusion to perform a complex task (e.g., "find and grasp the blue object") with a >70% success rate, completing the demonstration within 15 minutes.
 - **SC-004**: The user can successfully complete practical exercises and achieve at least an 80% score on module assessments that cover OpenAI Whisper, LLM prompt engineering for robotics, natural language to ROS action translation, vision transformers, multimodal fusion, real-time inference optimization, and cognitive architectures for embodied agents, all within a 2-hour assessment period.
 
 ## Assumptions
 
+- Provided scaffolding and pre-built components are acceptable for integrating elements from Modules 1-3 for the capstone project.
+- Students are responsible for covering their own GPT-4 API usage costs.
+- Students have access to individual hardware kits for hands-on experience.
 - Students have access to and are able to configure necessary APIs (e.g., OpenAI GPT-4 API, Whisper model) and ROS 2 action servers.
 - The computational resources (e.g., GPU for vision transformers, sufficient CPU for LLM inference) are available to support real-time inference optimization for multimodal fusion.
 - Basic ROS 2 environment and existing robot models/simulations from previous modules are available as a foundation.
