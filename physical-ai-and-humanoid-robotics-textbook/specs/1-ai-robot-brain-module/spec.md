@@ -93,12 +93,13 @@ As a student, I want to configure the Nav2 navigation stack for a bipedal robot,
 ### Measurable Outcomes
 
 - **SC-001**: The user can successfully create and configure an Isaac Sim scene to generate diverse synthetic training data using domain randomization techniques, validating the output data for variability, all within a 2-hour period.
-- **SC-002**: The user can successfully deploy and run a visual SLAM node (leveraging Isaac ROS) on a Jetson Orin, demonstrating real-time occupancy grid mapping and robot pose estimation with a localization error of less than 10cm, verifiable within 60 minutes.
+- **SC-002**: The user can successfully deploy and run a visual SLAM node (leveraging Isaac ROS) on a Jetson Orin, demonstrating real-time (60 FPS) occupancy grid mapping and robot pose estimation with a localization error of less than 10cm, verifiable within 60 minutes in a moderate dynamic environment with typical sensor noise and moderate robot movement speed.
 - **SC-003**: The user can configure the Nav2 navigation stack for a bipedal robot model in a simulated environment, and successfully implement and demonstrate a multi-step task plan using behavior trees for autonomous navigation, completing 3 out of 3 defined navigation goals within a 45-minute demonstration.
 - **SC-004**: The user can successfully complete practical exercises and achieve at least an 80% score on module assessments that cover NVIDIA Isaac Sim, synthetic data generation, Isaac ROS hardware acceleration, visual SLAM, occupancy grid mapping, Nav2 configuration for bipedal robots, behavior trees, and sim-to-real transfer strategies, all within a 3-hour assessment period.
 
 ## Assumptions
 
+- Students have access to individual hardware kits for hands-on experience.
 - Students have access to and are able to install NVIDIA Isaac Sim (part of Omniverse) and possess a compatible RTX GPU with ray tracing capabilities.
 - Students have access to and are able to configure an NVIDIA Jetson Orin development kit with Isaac ROS.
 - Students possess foundational knowledge in Python programming, linear algebra, calculus, and basic machine learning concepts.

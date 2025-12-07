@@ -16,7 +16,15 @@ Follow-up TODOs: None
 ## Core Principles
 
 ### Pedagogical clarity
-Content must be accessible to undergraduate/graduate students with basic computer science and engineering background. Content aims for a Flesch-Kincaid grade level of 10-12, and uses active voice in at least 75% of sentences.
+Content must be accessible to undergraduate/graduate students from **Computer Science, Mechanical Engineering, and Electrical Engineering backgrounds** with **intermediate Python proficiency (OOP, error handling, modules)** and **basic robotics concepts (robot types, sensors, actuators)**. Content aims for a Flesch-Kincaid grade level of 10-12, and uses active voice in at least 75% of sentences.
+
+### Course Focus
+This textbook is intended as a **survey course**, emphasizing breadth across various tools and concepts rather than deep-dive mastery of a few. Students are expected to gain a foundational understanding and practical exposure to a wide range of topics in Physical AI and Humanoid Robotics.
+
+### Physical Hardware Usage
+Some components of the assessment and learning experience MUST involve **physical hardware**, reinforcing practical application alongside simulation.
+
+### Pedagogical clarity
 
 ### Technical accuracy
 All technical claims, formulas, and implementations must be verified against authoritative sources (research papers, official documentation, industry standards)
