@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git --version)"
+      "Bash(git --version)",
+      "Bash(git fetch --all --prune)",
+      "Bash(ls -1d specs/*/)",
+      "Bash(git checkout -b 1-rag-chatbot)",
+      "Bash(mkdir -p specs/1-rag-chatbot)",
+      "Bash(mkdir -p specs/1-rag-chatbot/checklists)",
+      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)"
     ],
     "deny": [],
     "ask": []
