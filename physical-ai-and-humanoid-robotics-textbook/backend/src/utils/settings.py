@@ -17,9 +17,6 @@ class Settings(BaseSettings):
     # CORS
     allowed_origin: str
 
-    # Backend API
-    backend_api_url: str
-
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=False,
