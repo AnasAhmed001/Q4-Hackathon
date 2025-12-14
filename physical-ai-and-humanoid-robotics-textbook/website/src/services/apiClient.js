@@ -1,5 +1,5 @@
 // API client service with backend base URL from env (BACKEND_API_URL) and cross-origin request handling
-const BACKEND_API_URL = (typeof process !== 'undefined' && process.env?.BACKEND_API_URL) || 'http://localhost:8000';
+const BACKEND_API_URL = process.env.DOCUSAURUS_BACKEND_API_URL || 'http://localhost:8000';
 
 // Health check
 export async function healthCheck() {
