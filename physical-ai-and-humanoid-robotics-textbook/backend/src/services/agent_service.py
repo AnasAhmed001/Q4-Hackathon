@@ -11,12 +11,24 @@ from ..utils.settings import settings
 # Function Tools for Agent
 # ============================================================================
 
-# Initialize clients for tools
-co = cohere.Client(api_key=settings.cohere_api_key)
-qdrant_client = QdrantClient(
-    url=settings.qdrant_url,
-    api_key=settings.qdrant_api_key
-)
+# Lazy-load clients to avoid cold start timeouts
+_co = None
+_qdrant_client = None
+
+def get_cohere_client():
+    global _co
+    if _co is None:
+        _co = cohere.Client(api_key=settings.cohere_api_key)
+    return _co
+
+def get_qdrant_client():
+    global _qdrant_client
+    if _qdrant_client is None:
+        _qdrant_client = QdrantClient(
+            url=settings.qdrant_url,
+            api_key=settings.qdrant_api_key
+        )
+    return _qdrant_client
 
 
 @function_tool
@@ -32,6 +44,7 @@ def search_textbook_content(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         List of relevant content chunks with metadata
     """
     # Generate query embedding using Cohere
+    co = get_cohere_client()
     response = co.embed(
         texts=[query],
         model="embed-english-v3.0",
@@ -40,6 +53,7 @@ def search_textbook_content(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
     query_embedding = response.embeddings[0]
 
     # Search in Qdrant
+    qdrant_client = get_qdrant_client()
     search_results = qdrant_client.search(
         collection_name="textbook_embeddings",
         query_vector=query_embedding,
@@ -85,25 +99,32 @@ def search_selected_text(query: str, selected_text: str, top_k: int = 3) -> List
 
 class AgentService:
     def __init__(self):
-        # Configure custom client for Gemini
-        external_client = AsyncOpenAI(
-            api_key=settings.gemini_api_key,
-            base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-        )
-        
-        # Wrap client in OpenAIChatCompletionsModel
-        model = OpenAIChatCompletionsModel(
-            model="gemini-2.0-flash",  # Official OpenAI-compatible model
-            openai_client=external_client
-        )
-        
-        # Create agent with custom model and tools
-        self.agent = Agent(
-            name="Textbook Assistant",
-            instructions="You are a helpful teaching assistant for the Physical AI and Humanoid Robotics textbook. Use search_textbook_content tool to find relevant information. Always cite sources by mentioning the module and section. Provide clear explanations suitable for students. Maintain Flesch-Kincaid grade level 10-12.",
-            model=model,
-            tools=[search_textbook_content, search_selected_text]
-        )
+        self._agent = None
+    
+    @property
+    def agent(self):
+        """Lazy-load agent to reduce cold start time on Vercel"""
+        if self._agent is None:
+            # Configure custom client for Gemini
+            external_client = AsyncOpenAI(
+                api_key=settings.gemini_api_key,
+                base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+            )
+            
+            # Wrap client in OpenAIChatCompletionsModel
+            model = OpenAIChatCompletionsModel(
+                model="gemini-2.0-flash",  # Official OpenAI-compatible model
+                openai_client=external_client
+            )
+            
+            # Create agent with custom model and tools
+            self._agent = Agent(
+                name="Textbook Assistant",
+                instructions="You are a helpful teaching assistant for the Physical AI and Humanoid Robotics textbook. Use search_textbook_content tool to find relevant information. Always cite sources by mentioning the module and section. Provide clear explanations suitable for students. Maintain Flesch-Kincaid grade level 10-12.",
+                model=model,
+                tools=[search_textbook_content, search_selected_text]
+            )
+        return self._agent
 
     async def generate_response_stream(
         self,
