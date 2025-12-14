@@ -55,6 +55,10 @@ const config: Config = {
     ],
   ],
 
+  themes: [
+    // The ChatWidget will be injected via the custom Root theme component
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
