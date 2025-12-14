@@ -21,7 +21,7 @@ description: "Task list for RAG Chatbot implementation"
 
 - **Web app**: `backend/src/`, `website/src/`
 - **Backend**: `backend/src/`, `backend/tests/`
-- **Frontend**: `frontend/src/`, `frontend/tests/`
+- **Frontend**: `website/src/`, `website/tests/`
 
 ## Phase 1: Setup (Shared Infrastructure)
 
@@ -29,17 +29,17 @@ description: "Task list for RAG Chatbot implementation"
 
 - [ ] T001 Create backend project structure in backend/
 - [ ] T002 Initialize uv project with FastAPI dependencies in backend/
-- [ ] T003 [P] Install backend dependencies: fastapi, uvicorn, sqlalchemy, psycopg2-binary, qdrant-client, cohere, openai-agents, openai, python-dotenv, pydantic-settings, asyncpg
+- [ ] T003 [P] Install backend dependencies: fastapi, uvicorn, sqlalchemy, psycopg2-binary, qdrant-client, cohere, openai-agents, python-dotenv, pydantic-settings, asyncpg
 - [ ] T004 Configure environment variables and settings in backend/src/utils/settings.py
 - [ ] T005 Create .env file with required API keys in backend/:
   ```
   COHERE_API_KEY=your_cohere_api_key_here  # Get from https://dashboard.cohere.com/api-keys
-  GEMINI_API_KEY=AIzaSyCoq8oWwk5YUF2DDGzLZCVX378hKNH1wQ4
-  QDRANT_URL=https://2e225b71-4342-4efe-a3a3-c228b6554f86.us-east4-0.gcp.cloud.qdrant.io:6333
-  QDRANT_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jMlCSKvckvlLj3A379LAaY2v4MkAbyGdr77fRyhtQ7M
-  DATABASE_URL=postgresql://neondb_owner:npg_1BJHKRxts5yM@ep-wandering-recipe-a1bdvjuz-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-  ALLOWED_ORIGIN=https://q4-hackathon-eosin.vercel.app
-  BACKEND_API_URL=http://localhost:8000  # or production URL
+  GEMINI_API_KEY=your_gemini_api_key
+  QDRANT_URL=your_qdrant_api_key
+  QDRANT_API_KEY=your_qdrant_api_url
+  DATABASE_URL=your_postgress_api_key
+  ALLOWED_ORIGIN=your_frontendurl
+  BACKEND_API_URL=your_backend_url  # or production URL
   ```
 - [ ] T006 Add .env file to .gitignore to prevent committing API keys
 ---

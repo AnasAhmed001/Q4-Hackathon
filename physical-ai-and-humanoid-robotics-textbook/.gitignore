@@ -37,3 +37,4 @@ Thumbs.db
 # Windows
 desktop.ini
 $RECYCLE.BIN/
+.env

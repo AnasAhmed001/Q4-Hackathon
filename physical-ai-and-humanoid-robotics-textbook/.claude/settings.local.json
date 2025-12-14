@@ -7,7 +7,11 @@
       "Bash(git checkout -b 1-rag-chatbot)",
       "Bash(mkdir -p specs/1-rag-chatbot)",
       "Bash(mkdir -p specs/1-rag-chatbot/checklists)",
-      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)"
+      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "SlashCommand(/sp.phr)",
+      "SlashCommand(/sp.phr \"start implementing the rag based chatbot\")",
+      "mcp__context7__get-library-docs"
     ],
     "deny": [],
     "ask": []
