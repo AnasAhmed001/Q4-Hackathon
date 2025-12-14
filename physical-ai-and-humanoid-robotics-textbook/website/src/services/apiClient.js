@@ -1,7 +1,13 @@
 // API client service with backend base URL from env (BACKEND_API_URL) and cross-origin request handling
-// In Docusaurus, only env vars prefixed with DOCUSAURUS_ are available in the browser
-const BACKEND_API_URL = (typeof window !== 'undefined' && window.docusaurus?.siteConfig?.customFields?.backendApiUrl) 
-  || 'http://localhost:8000';
+// Detect environment based on hostname
+const isProduction = typeof window !== 'undefined' && 
+  (window.location.hostname.includes('vercel.app') || window.location.hostname.includes('q4-hackathon'));
+
+const BACKEND_API_URL = isProduction 
+  ? 'https://rag-chatbot-api-j0x0.onrender.com'
+  : 'http://localhost:8000';
+
+console.log('Backend API URL:', BACKEND_API_URL); // Debug log
 
 // Health check
 export async function healthCheck() {
