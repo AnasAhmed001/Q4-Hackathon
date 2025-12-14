@@ -6,11 +6,18 @@ from ..utils.settings import settings
 
 class QdrantService:
     def __init__(self):
-        self.client = QdrantClient(
-            url=settings.qdrant_url,
-            api_key=settings.qdrant_api_key,
-        )
+        self._client = None
         self.collection_name = "textbook_embeddings"
+    
+    @property
+    def client(self):
+        """Lazy-load Qdrant client to avoid timeout on cold starts"""
+        if self._client is None:
+            self._client = QdrantClient(
+                url=settings.qdrant_url,
+                api_key=settings.qdrant_api_key,
+            )
+        return self._client
 
     def create_collection(self):
         """

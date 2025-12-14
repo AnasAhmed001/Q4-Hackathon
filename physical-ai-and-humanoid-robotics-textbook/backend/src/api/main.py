@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers import chat_router, health_router, ingest_router
 from .middleware import RateLimitMiddleware
 from ..utils.settings import settings
-from ..services.qdrant_service import qdrant_service
 
 
 app = FastAPI(
@@ -26,13 +25,8 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")
-async def startup_event():
-    """
-    Initialize Qdrant collection on startup
-    """
-    qdrant_service.create_collection()
-
+# Note: Removed startup event for Vercel serverless compatibility
+# Qdrant collection is created on-demand in the service
 
 # Add rate limiting middleware
 app.add_middleware(RateLimitMiddleware)
