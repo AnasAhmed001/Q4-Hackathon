@@ -37,14 +37,9 @@ const ChatWidget: React.FC = () => {
   useEffect(() => {
     const initSession = async () => {
       try {
+        // Generate a fresh session on each page load (clears history)
         const session = await chatService.getSessionId();
         setSessionId(session);
-
-        // Load conversation history if exists
-        const history = await chatService.getConversationHistory(session);
-        if (history && history.length > 0) {
-          setMessages(history);
-        }
 
         // Test backend connection
         const health = await chatService.checkHealth();
