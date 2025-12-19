@@ -84,7 +84,7 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: 'https://github.com/physical-ai-humanoid-robotics-textbook/physical-ai-and-humanoid-robotics-textbook',
+          href: 'https://github.com/AnasAhmed001/Q4-Hackathon/tree/main/physical-ai-and-humanoid-robotics-textbook',
           label: 'GitHub',
           position: 'right',
         },
@@ -106,16 +106,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/AnasxAhmed01',
             },
           ],
         },
@@ -124,12 +116,12 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/physical-ai-humanoid-robotics-textbook/physical-ai-and-humanoid-robotics-textbook',
+              href: 'https://github.com/AnasAhmed001/Q4-Hackathon/tree/main/physical-ai-and-humanoid-robotics-textbook',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook. Built by Anas Ahmed with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
