@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import chat_router, health_router, ingest_router
-from .middleware import RateLimitMiddleware
 from ..utils.settings import settings
 
 
@@ -27,9 +26,6 @@ app.add_middleware(
 
 # Note: Removed startup event for Vercel serverless compatibility
 # Qdrant collection is created on-demand in the service
-
-# Add rate limiting middleware
-app.add_middleware(RateLimitMiddleware)
 
 # Include routers
 app.include_router(chat_router.router, prefix="/api/v1", tags=["chat"])

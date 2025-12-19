@@ -5,7 +5,7 @@ from typing import Optional
 class Settings(BaseSettings):
     # API Keys
     cohere_api_key: str
-    gemini_api_key: str
+    groq_api_key: str  # Switched from Gemini to Groq
 
     # Database
     database_url: str

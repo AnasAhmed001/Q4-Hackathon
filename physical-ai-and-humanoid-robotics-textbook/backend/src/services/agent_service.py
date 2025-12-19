@@ -1,5 +1,5 @@
-from agents import Agent, Runner, function_tool, OpenAIChatCompletionsModel
-from openai import AsyncOpenAI
+from agents import Agent, Runner, function_tool
+from agents.extensions.models.litellm_model import LitellmModel
 from openai.types.responses import ResponseTextDeltaEvent
 from typing import List, Dict, Any, AsyncGenerator
 import cohere
@@ -11,24 +11,12 @@ from ..utils.settings import settings
 # Function Tools for Agent
 # ============================================================================
 
-# Lazy-load clients to avoid cold start timeouts
-_co = None
-_qdrant_client = None
-
-def get_cohere_client():
-    global _co
-    if _co is None:
-        _co = cohere.Client(api_key=settings.cohere_api_key)
-    return _co
-
-def get_qdrant_client():
-    global _qdrant_client
-    if _qdrant_client is None:
-        _qdrant_client = QdrantClient(
-            url=settings.qdrant_url,
-            api_key=settings.qdrant_api_key
-        )
-    return _qdrant_client
+# Initialize clients for tools
+co = cohere.Client(api_key=settings.cohere_api_key)
+qdrant_client = QdrantClient(
+    url=settings.qdrant_url,
+    api_key=settings.qdrant_api_key
+)
 
 
 @function_tool
@@ -44,7 +32,6 @@ def search_textbook_content(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         List of relevant content chunks with metadata
     """
     # Generate query embedding using Cohere
-    co = get_cohere_client()
     response = co.embed(
         texts=[query],
         model="embed-english-v3.0",
@@ -53,7 +40,6 @@ def search_textbook_content(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
     query_embedding = response.embeddings[0]
 
     # Search in Qdrant
-    qdrant_client = get_qdrant_client()
     search_results = qdrant_client.search(
         collection_name="textbook_embeddings",
         query_vector=query_embedding,
@@ -99,32 +85,18 @@ def search_selected_text(query: str, selected_text: str, top_k: int = 3) -> List
 
 class AgentService:
     def __init__(self):
-        self._agent = None
-    
-    @property
-    def agent(self):
-        """Lazy-load agent to reduce cold start time on Vercel"""
-        if self._agent is None:
-            # Configure custom client for Gemini
-            external_client = AsyncOpenAI(
-                api_key=settings.gemini_api_key,
-                base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-            )
-            
-            # Wrap client in OpenAIChatCompletionsModel
-            model = OpenAIChatCompletionsModel(
-                model="gemini-2.0-flash",  # Official OpenAI-compatible model
-                openai_client=external_client
-            )
-            
-            # Create agent with custom model and tools
-            self._agent = Agent(
-                name="Textbook Assistant",
-                instructions="You are a helpful teaching assistant for the Physical AI and Humanoid Robotics textbook. Use search_textbook_content tool to find relevant information. Always cite sources by mentioning the module and section. Provide clear explanations suitable for students. Maintain Flesch-Kincaid grade level 10-12.",
-                model=model,
-                tools=[search_textbook_content, search_selected_text]
-            )
-        return self._agent
+        # Use OpenRouter with free Gemma 2 9B model (more stable than Llama free tier)
+        model = LitellmModel(
+            model="openrouter/google/gemma-3-27b-it:free",
+            api_key=settings.groq_api_key
+        )
+        
+        # Create agent with OpenRouter model and tools
+        self.agent = Agent(
+            name="Textbook Assistant",
+            instructions="You are a helpful teaching assistant for the Physical AI and Humanoid Robotics textbook. You will receive relevant context from the textbook. Use this context to answer questions accurately. Always cite sources by mentioning the module and section. Provide clear explanations suitable for students.",
+            model=model
+        )
 
     async def generate_response_stream(
         self,
@@ -135,8 +107,26 @@ class AgentService:
         """
         Generate a streaming response using the agent with proper streaming
         """
-        # Use the streamed runner (agent already has Gemini model configured)
-        result = Runner.run_streamed(self.agent, query)
+        # Format context chunks into readable text
+        if context_chunks:
+            context_text = "\n\n".join([
+                f"[Source: {chunk['module']} - {chunk['section']}]\n{chunk['content']}"
+                for chunk in context_chunks
+            ])
+            
+            # Inject context into the query
+            enhanced_query = f"""Relevant context from the textbook:
+
+{context_text}
+
+Student question: {query}
+
+Please answer the question based on the context provided above. Always cite the sources (module and section) in your response."""
+        else:
+            enhanced_query = query
+        
+        # Use the streamed runner with context-enhanced query (pass as string, not list)
+        result = Runner.run_streamed(self.agent, enhanced_query)
 
         async for event in result.stream_events():
             # Check for text delta events (streamed tokens)

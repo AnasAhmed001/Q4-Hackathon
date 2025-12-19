@@ -4,27 +4,234 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* Futuristic Robotic Theme - Cyan/Blue Color Scheme */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #1cb5f7;
+  --ifm-color-primary-darker: #0aadf6;
+  --ifm-color-primary-darkest: #0891d4;
+  --ifm-color-primary-light: #54c5f9;
+  --ifm-color-primary-lighter: #66ccfa;
+  --ifm-color-primary-lightest: #8adbfb;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(56, 189, 248, 0.1);
+  
+  /* Light mode navbar */
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-link-color: #1e293b;
+  --ifm-navbar-link-hover-color: #38bdf8;
+  --ifm-navbar-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  
+  /* Light mode sidebar */
+  --ifm-menu-color: #334155;
+  --ifm-menu-color-background-hover: rgba(56, 189, 248, 0.08);
+  --ifm-menu-color-background-active: rgba(56, 189, 248, 0.12);
+  
+  /* Light mode backgrounds */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8fafc;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode with futuristic cyan/purple theme */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #1cb5f7;
+  --ifm-color-primary-darker: #0aadf6;
+  --ifm-color-primary-darkest: #0891d4;
+  --ifm-color-primary-light: #54c5f9;
+  --ifm-color-primary-lighter: #66ccfa;
+  --ifm-color-primary-lightest: #8adbfb;
+  --docusaurus-highlighted-code-line-bg: rgba(56, 189, 248, 0.15);
+  
+  /* Dark mode backgrounds */
+  --ifm-background-color: #0a0e27;
+  --ifm-background-surface-color: #1a1f3a;
+  
+  /* Navbar dark mode */
+  --ifm-navbar-background-color: #0a0e27;
+  --ifm-navbar-shadow: 0 1px 0 0 rgba(56, 189, 248, 0.1);
+  
+  /* Sidebar dark mode */
+  --ifm-menu-color: #94a3b8;
+  --ifm-menu-color-background-hover: rgba(56, 189, 248, 0.15);
+  --ifm-menu-color-background-active: rgba(56, 189, 248, 0.2);
+}
+
+/* Enhanced Navbar Styling */
+.navbar {
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.navbar__link {
+  transition: all 0.3s ease;
+  color: var(--ifm-navbar-link-color) !important;
+}
+
+.navbar__link:hover {
+  color: var(--ifm-color-primary) !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+.navbar__brand {
+  color: var(--ifm-navbar-link-color) !important;
+  transition: all 0.3s ease;
+}
+
+.navbar__brand:hover {
+  opacity: 0.9;
+  color: var(--ifm-color-primary) !important;
+}
+
+.navbar__title {
+  color: var(--ifm-navbar-link-color) !important;
+  transition: all 0.3s ease;
+}
+
+.navbar__title:hover {
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Dark mode navbar - blue links with glow on hover */
+html[data-theme='dark'] .navbar__link,
+html[data-theme='dark'] .navbar__title {
+  color: #38bdf8 !important;
+}
+
+html[data-theme='dark'] .navbar__link:hover,
+html[data-theme='dark'] .navbar__title:hover {
+  color: #60a5fa !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+html[data-theme='dark'] .navbar__brand {
+  color: #38bdf8 !important;
+}
+
+html[data-theme='dark'] .navbar__brand:hover {
+  color: #60a5fa !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+/* Light mode navbar */
+html[data-theme='light'] .navbar__link,
+html[data-theme='light'] .navbar__title,
+html[data-theme='light'] .navbar__brand {
+  color: #1e293b !important;
+}
+
+html[data-theme='light'] .navbar__link:hover,
+html[data-theme='light'] .navbar__title:hover,
+html[data-theme='light'] .navbar__brand:hover {
+  color: #38bdf8 !important;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: var(--ifm-navbar-background-color);
+  border-top: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.footer--dark {
+  background-color: #0a0e27;
+}
+
+[data-theme='light'] .footer {
+  background-color: #ffffff;
+}
+
+[data-theme='dark'] .footer {
+  background-color: #0a0e27;
+}
+
+/* Footer links */
+.footer__link-item {
+  color: #94a3b8;
+  transition: all 0.3s ease;
+}
+
+[data-theme='light'] .footer__link-item {
+  color: #475569;
+}
+
+.footer__link-item:hover {
+  color: #38bdf8 !important;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.footer__title {
+  color: #cbd5e1;
+}
+
+[data-theme='light'] .footer__title {
+  color: #1e293b;
+}
+
+.footer__copyright {
+  color: #94a3b8;
+}
+
+[data-theme='light'] .footer__copyright {
+  color: #64748b;
+}
+
+/* Enhanced Sidebar Styling */
+.menu__link {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu__link:hover {
+  color: var(--ifm-color-primary) !important;
+  border-left-color: var(--ifm-color-primary);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.menu__link--active {
+  color: var(--ifm-color-primary) !important;
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-left-color: var(--ifm-color-primary);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.menu__list-item-collapsible:hover {
+  background: rgba(56, 189, 248, 0.05);
+}
+
+/* Table of Contents Styling */
+.table-of-contents__link {
+  transition: all 0.3s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary) !important;
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600;
+  border-left-color: var(--ifm-color-primary);
+}
+
+/* Pagination Styling */
+.pagination-nav__link {
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  transition: all 0.3s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+/* Admonitions with futuristic style */
+.admonition {
+  border-left-width: 4px;
+}
+
+/* Code blocks with cyan accents */
+.prism-code {
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.1);
 }
